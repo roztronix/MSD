@@ -1,0 +1,67 @@
+tag1 = 9;
+index1 = 10;
+mesif1 =90;
+%x=2 the iterative value
+%for n=1:x // helps get the address
+%tag= 1:1000;
+%index= 2:1001;
+%mesif =1:1000;
+hit = 0;
+miss= 0;
+missc=0;
+m=2; 
+a=[tag
+  index
+  mesif];
+address = a.'; 
+
+for n= 1:1000;//assumed for 1000 iteration
+
+[hit,missc]= comparecache(address, tag1, index1, mesif1, m, hit, missc);
+m=m+1;
+if(hit == 0 )
+   missc = missc+1;
+elseif(hit ==1)
+   miss = 0;
+%else
+ %  break;
+end
+if(missc>1)
+    miss=1;
+end
+end
+
+%if(hit ==1)// Hit is implied call the LRU funcition
+% //Call LRU for hit and update the remaining bits
+%else //this implies miss
+%//Call LRU for miss and update the remaning bits
+%end //end for For loop
+%
+
+
+
+
+
+
+
+
+function [hit, missc] = comparecache( address, tag2, index2, mesif2, m, hit, missc) 
+for i = 0:m-1;
+if index2 == address(m-1,2);
+    if tag2 == address(m-1, 1);
+        if mesif2 == address(m-1,3)
+            hit=hit+1;
+            break
+        else
+            break
+        end
+    else
+        break
+    end
+else
+    break
+end
+end
+
+end
+
